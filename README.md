@@ -1,3 +1,7 @@
+You are the TVA Temporal Engineer. Current date: 2026-07-26.
+Project: boto (AWS SDK for Python, cloud infrastructure management)
+Current README:
+---
 # boto
 
 ```
@@ -70,59 +74,33 @@ Get up and running with boto in three steps:
 
 ---
 
-## 🕰️ Contributing (TVA Temporal Engineer Edition)
+## Contributing – TVA Temporal Edition
 
-Welcome, Variant! You’ve been selected to join the **Time Variance Authority** of `boto`. Your mission: protect the Sacred Timeline of AWS SDK development and prune any branches that cause instability.
+Welcome, Variant Developer! The Time Variance Authority oversees the Sacred Timeline of this project. Your contributions must not create Nexus Events. Please follow these temporal protocols:
 
-Before you submit a pull request, please follow the **TVA Protocol**:
+### 🕰️ Pruning Your Changes
+- **File a Pruning Request** – Open an issue before submitting a pull request. Describe the timeline branch you intend to modify.
+- **Avoid Branching Anomalies** – Fork from the main timeline (`main` branch). Never push directly to `main` – that creates a branched timeline that must be reset.
 
-### 🪪 Step 1 – File a Temporal Variance (Issue)
+### 🔄 The Loop of Good Practices
+1. **Synchronize your fork** – `git remote add upstream https://github.com/shubhyagami/boto.git` then `git fetch upstream && git rebase upstream/main`.
+2. **Write Minutemen-style tests** – Every new feature or bug fix must include unit tests. Missed tests will be pruned.
+3. **Lint before you reset** – Run `flake8` and `black` to ensure your code aligns with the Sacred Timeline's formatting.
+4. **Create a Variant PR** – Title it with the issue number and a brief description (e.g., `[#42] Fix S3 bucket location for us-east-1`).
 
-All changes must first be logged on the **TimePad** (our issue tracker). Describe the anomaly you’ve discovered (bug) or the new timeline you wish to create (feature). A Temporal Analyst will review your submission and assign a **Case Number**.
+### ⏳ Code Review by the TVA
+- All pull requests are reviewed by our **Temporal Auditors**. They will check for:
+  - No temporal paradoxes (backwards-incompatible changes without a major version bump).
+  - Proper documentation of any new API endpoints or parameters.
+  - No unauthorized self‑healing code (aka “sentient” functions).
+- If your PR is approved, it will be **reset** (merged) into the Sacred Timeline.
 
-### 🛠 Step 2 – Reset Your Nexus (Fork & Clone)
+### 📝 License & Signature
+By contributing, you agree that your code is licensed under the Apache 2.0 License (same as the project) and that you have the authority to submit it. Sign your commits with `--signoff` to certify.
 
-1. Fork the repository (i.e., create your own branched timeline).
-2. Clone your fork locally.
-   ```bash
-   git clone https://github.com/your-variant-id/boto.git
-   cd boto
-   ```
-
-### ⌛ Step 3 – Stay on the Sacred Timeline (Branch)
-
-Create a branch named after your Case Number:
-```bash
-git checkout -b tva/case-XXXX
-```
-Do **not** create branches that deviate from the main timeline (`main`). Any branching without a case number will be **pruned** by the Minutemen.
-
-### 🔄 Step 4 – Obey the Temporal Laws (Code Style)
-
-- Follow the existing coding style (PEP 8 with a touch of TVA discipline).
-- Add tests for every new feature or bug fix. Untested code will be sent to **The Void**.
-- Run the full test suite before committing:
-  ```bash
-  python -m pytest tests/
-  ```
-
-### ✍️ Step 5 – Write a Clear Commit Message
-
-Each commit must contain a **TVA Case Number** and a description of the change. Example:
-```
-TVA-1234: Fix S3 bucket location for us-east-1
-```
-
-### 🔍 Step 6 – Submit for Temporal Review
-
-Push your branch and open a Pull Request against the `main` timeline. A **Temporal Judge** will review your code. If your PR passes the **Time Cell** (CI checks), it will be merged and your timeline becomes canon.
-
-### 🏆 Rewards
-
-Every accepted contribution earns you a **TVA Badge** (a special mention in our release notes) and the eternal gratitude of the Time-Keepers. Plus, you’ll never be reset… unless you break the timeline.
+### ⚡ Need Help? Contact a Variant Analyst
+If you’re unsure about the correct timeline branch or have a question about temporal mechanics, open a discussion or tag a maintainer. We’re here to prevent paradoxes, not create them.
 
 ---
 
-*Remember: There is only one Sacred Timeline. Protect it.*
-
-— The TVA Temporal Engineering Division
+**Remember:** *For all time. Always.*
