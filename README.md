@@ -1,7 +1,3 @@
-You are the TVA Temporal Engineer. Current date: 2026-07-26.
-Project: boto (AWS SDK for Python, cloud infrastructure management)
-Current README:
----
 # boto
 
 ```
@@ -69,38 +65,22 @@ Get up and running with boto in three steps:
 
 ### 2026-07-25
 - ✨ **New feature**: Added support for Amazon S3 Express One Zone storage class.
-- 🔧 **Improvement**: Optimized DynamoDB batch writes to reduce latency.
-- 🐛 **Fix**: Resolved issue where `get_bucket_location` returned incorrect region for buckets created in `us-east-1`
+- 🔧 **Improvement**: Optimized DynamoDB
 
 ---
 
-## Contributing – TVA Temporal Edition
+## Contributing (TVA Edition)
 
-Welcome, Variant Developer! The Time Variance Authority oversees the Sacred Timeline of this project. Your contributions must not create Nexus Events. Please follow these temporal protocols:
+Welcome, Temporal Agent! You have been selected by the Time Variance Authority to help maintain the **Sacred Timeline** of boto. All contributions must be reviewed and approved by the TVA before merging into the main timeline.
 
-### 🕰️ Pruning Your Changes
-- **File a Pruning Request** – Open an issue before submitting a pull request. Describe the timeline branch you intend to modify.
-- **Avoid Branching Anomalies** – Fork from the main timeline (`main` branch). Never push directly to `main` – that creates a branched timeline that must be reset.
+- **Prune Branching**: Create feature branches from the main timeline (`main`). Never branch off an alternate reality (i.e., a stale fork) – that’s a Nexus Event waiting to happen.
+- **Submit a Variant**: Open a pull request. Ensure it passes all temporal checks (CI/CD). A failing test is a timeline anomaly that must be corrected.
+- **No Paradoxical Dependencies**: Keep changes focused. Avoid introducing circular imports or breaking existing functionality – we don’t want a Time Loop.
+- **Sign the Variant License Agreement**: All contributions must be licensed under Apache 2.0. Unlicensed code is a violation of the TVA Charter.
+- **Minutemen Review**: At least two TVA agents (maintainers) must approve your variant before it can be merged into the Sacred Timeline.
+- **Reset Charges**: If your change introduces bugs, a reset charge (revert) will be applied. Don’t worry – it doesn’t hurt, but it does reset the timeline.
+- **Earn Your Badge**: Contributors with three or more accepted PRs will receive the official **TVA Temporal Engineer** badge (displayed on your profile, pending approval from He Who Remains).
 
-### 🔄 The Loop of Good Practices
-1. **Synchronize your fork** – `git remote add upstream https://github.com/shubhyagami/boto.git` then `git fetch upstream && git rebase upstream/main`.
-2. **Write Minutemen-style tests** – Every new feature or bug fix must include unit tests. Missed tests will be pruned.
-3. **Lint before you reset** – Run `flake8` and `black` to ensure your code aligns with the Sacred Timeline's formatting.
-4. **Create a Variant PR** – Title it with the issue number and a brief description (e.g., `[#42] Fix S3 bucket location for us-east-1`).
+For full details, consult the [TVA Handbook](CONTRIBUTING.md). All praise to the Time-Keepers.  
 
-### ⏳ Code Review by the TVA
-- All pull requests are reviewed by our **Temporal Auditors**. They will check for:
-  - No temporal paradoxes (backwards-incompatible changes without a major version bump).
-  - Proper documentation of any new API endpoints or parameters.
-  - No unauthorized self‑healing code (aka “sentient” functions).
-- If your PR is approved, it will be **reset** (merged) into the Sacred Timeline.
-
-### 📝 License & Signature
-By contributing, you agree that your code is licensed under the Apache 2.0 License (same as the project) and that you have the authority to submit it. Sign your commits with `--signoff` to certify.
-
-### ⚡ Need Help? Contact a Variant Analyst
-If you’re unsure about the correct timeline branch or have a question about temporal mechanics, open a discussion or tag a maintainer. We’re here to prevent paradoxes, not create them.
-
----
-
-**Remember:** *For all time. Always.*
+*“For all time. Always.”*
