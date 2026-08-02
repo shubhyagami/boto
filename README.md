@@ -71,16 +71,23 @@ Get up and running with boto in three steps:
 
 ## Contributing (TVA Edition)
 
-Welcome, Temporal Agent! You have been selected by the Time Variance Authority to help maintain the **Sacred Timeline** of boto. All contributions must be reviewed and approved by the TVA before merging into the main timeline.
+Welcome, Temporal Agent! You have been selected by the Time Variance Authority to help maintain the **Sacred Ti
 
-- **Prune Branching**: Create feature branches from the main timeline (`main`). Never branch off an alternate reality (i.e., a stale fork) – that’s a Nexus Event waiting to happen.
-- **Submit a Variant**: Open a pull request. Ensure it passes all temporal checks (CI/CD). A failing test is a timeline anomaly that must be corrected.
-- **No Paradoxical Dependencies**: Keep changes focused. Avoid introducing circular imports or breaking existing functionality – we don’t want a Time Loop.
-- **Sign the Variant License Agreement**: All contributions must be licensed under Apache 2.0. Unlicensed code is a violation of the TVA Charter.
-- **Minutemen Review**: At least two TVA agents (maintainers) must approve your variant before it can be merged into the Sacred Timeline.
-- **Reset Charges**: If your change introduces bugs, a reset charge (revert) will be applied. Don’t worry – it doesn’t hurt, but it does reset the timeline.
-- **Earn Your Badge**: Contributors with three or more accepted PRs will receive the official **TVA Temporal Engineer** badge (displayed on your profile, pending approval from He Who Remains).
+---
 
-For full details, consult the [TVA Handbook](CONTRIBUTING.md). All praise to the Time-Keepers.  
+## TVA Temporal Roadmap
 
-*“For all time. Always.”*
+Approved by the Time Keepers – these features are destined to exist. Check off what's already been pruned from the timeline.
+
+- [x] **S3 Express One Zone storage class** – *Variant accepted into the sacred timeline (2026-07-25).*
+- [ ] **Lambda multi‑region replication** – *Because one timeline is never enough.*
+- [ ] **DynamoDB auto‑scaling with temporal predictions** – *Pre‑emptive scaling before the next incursion.*
+- [ ] **IAM policy linting via Minutemen** – *Automatically flag nexus events in your permissions.*
+- [ ] **CloudFormation stack reset** – *Reset any stack to a previous branch of the timeline.*
+- [ ] **SQS dead‑letter queue time loop** – *Messages that fail are automatically retried until the heat death of the universe.*
+- [ ] **Secret manager integration with the Void** – *Store secrets that vanish after one use.*
+- [ ] **AWS Glue job scheduler with temporal drift compensation** – *Jobs run at the exact same moment across all realities.*
+- [ ] **Boto CLI time‑travel mode** – *`boto --timeline 1985-10-26` for retro‑compatibility.*
+- [ ] **Full support for the TVA’s own cloud: The Sacred Infrastructure** – *Coming soon, after the next pruning.*
+
+> *“All timelines lead to boto.”* – He Who Remains
