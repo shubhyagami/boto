@@ -71,23 +71,47 @@ Get up and running with boto in three steps:
 
 ## Contributing (TVA Edition)
 
-Welcome, Temporal Agent! You have been selected by the Time Variance Authority to help maintain the **Sacred Ti
+Welcome, Temporal Agent! You have been selected by the Time Variance Authority to help maintain the **Sacred Timeline** of the boto SDK. GitHub is a single timeline, and your pull requests determine whether we prune a nexus event or create a branch that leads to entropy.
 
----
+### ⏳ Temporal Agent Onboarding
 
-## TVA Temporal Roadmap
+1. **Pruning Nexus Events**  
+   Before writing code, remember: *every undocumented API call creates a branch in the timeline.* Check existing issues labeled `nexus-event` to find temporal anomalies that require immediate pruning. Do not deviate from the Sacred Timeline unless you want to meet Hunter B-15.
 
-Approved by the Time Keepers – these features are destined to exist. Check off what's already been pruned from the timeline.
+2. **He Who Remains Protocol**  
+   If your feature introduces breaking changes, you must file a **Temporal Deviation Report (TDR)**. Include the following:
+   - Affected AWS SDK modules (many of these have passed on into the void. Let them rest.)
+   - Justification for altering the flow of the SDK (No single agent should cause a multiverse of fragmentation.)
+   - Fallback paths for users who lived in the old timeline
 
-- [x] **S3 Express One Zone storage class** – *Variant accepted into the sacred timeline (2026-07-25).*
-- [ ] **Lambda multi‑region replication** – *Because one timeline is never enough.*
-- [ ] **DynamoDB auto‑scaling with temporal predictions** – *Pre‑emptive scaling before the next incursion.*
-- [ ] **IAM policy linting via Minutemen** – *Automatically flag nexus events in your permissions.*
-- [ ] **CloudFormation stack reset** – *Reset any stack to a previous branch of the timeline.*
-- [ ] **SQS dead‑letter queue time loop** – *Messages that fail are automatically retried until the heat death of the universe.*
-- [ ] **Secret manager integration with the Void** – *Store secrets that vanish after one use.*
-- [ ] **AWS Glue job scheduler with temporal drift compensation** – *Jobs run at the exact same moment across all realities.*
-- [ ] **Boto CLI time‑travel mode** – *`boto --timeline 1985-10-26` for retro‑compatibility.*
-- [ ] **Full support for the TVA’s own cloud: The Sacred Infrastructure** – *Coming soon, after the next pruning.*
+3. **Minutemen Review Board**  
+   Once submitted, your PR will be evaluated by the Minutemen Code Review Board. Do not be alarmed if they arrive through a Timedoor wielding glowing pruning batons — They actually _are_ code reviewers. 
 
-> *“All timelines lead to boto.”* – He Who Remains
+4. **Sacred Test Purity**  
+   Temporal Loom integrity depends on unbroken tests.
+   - "Reset the timeline" before each test (`pytest --reset-timeline`).
+   - Never leave loops running on separate timelines, with or without async (the Timeline already is one).
+   - Confidence in passing CI = Confidence in a stable Timeline.
+
+5. **Miss Minutes Documentation**  
+   "Hi there! I'm Miss Minutes. Don't forget to update the docs! Without me, nothing you do is remembered, and without memory, there is no Timeline."
+
+### 🌀 So You Want To Rewind Time?
+
+When rolling back changes:
+
+- Use `git revert <commit-sha>` instead of editing history. The TVA strictly prohibits fabricating un-happened events unless He Who Remains permits it.
+- For mass rollback scripts, consult **Temporal Engineer OB-951**.
+
+### 🧹 Agent Decorum
+
+- Don't bring variants from other timelines into the commit history. No Temporal Loom overloads.
+- Don't rebase while standing inside a Timedoor. It causes multiple branches to be concurrent on the same point.
+- Anyone contributing to a cross-timeline parallel package (they exist) must file a TVA `- clearance / origin / branch` form with accounting.
+
+Remember — for all time, always.  
+\- **The TVA Temporal Engineering Department**
+
+### 🫶 Acknowledgements
+
+The boto SDK exists because many agents gave of their time to keep the infrastructure maintainable across multitudes of deployments, qubits, regions, and quantum recursion artifacts. If you're reading this, you're one of them.
