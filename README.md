@@ -9,8 +9,6 @@
 
 Boto is a Python package that provides interfaces to Amazon Web Services. It allows Python developers to write scripts and applications that interact with AWS services like S3, EC2, SQS, and more.
 
----
-
 ## Quick Start
 
 Get up and running with Boto in three steps:
@@ -37,8 +35,6 @@ Get up and running with Boto in three steps:
        print(bucket.name)
    ```
 
----
-
 ## Features
 
 - **Broad AWS Support:** Connect to and manage a wide variety of AWS services including compute, storage, databases, and messaging.
@@ -46,16 +42,12 @@ Get up and running with Boto in three steps:
 - **Retry Logic:** Built-in exponential backoff and retries to handle API throttling gracefully.
 - **Debugging:** Streamlined debug logging to easily trace API calls and troubleshoot issues.
 
----
-
 ## Pro Tips
 
 - **Pagination:** Use `boto.s3.bucketlistresultset` to paginate through large result sets without running into memory issues.
 - **Retries:** Enable automatic retries by setting `boto.config.set('Boto', 'num_retries', 3)`.
 - **Profiles:** Switch between multiple AWS accounts with `boto.config.set('Boto', 'profile', 'myprofile')`.
 - **Logging:** Turn on debug logging to see API calls: `boto.set_stream_logger('boto')`.
-
----
 
 ## Featured Use Case: Automating EC2 Instance Lifecycle
 
@@ -89,8 +81,6 @@ ec2.terminate_instances(instance_ids=[instance.id])
 print(f"{instance.id} terminated.")
 ```
 
----
-
 ## Release Highlights
 
 ### S3 Express One Zone Support
@@ -109,8 +99,6 @@ key.key = 'hello.txt'
 key.set_contents_from_string('Fast as lightning!')
 ```
 
----
-
 ## Changelog
 
 ### 2026-08-06
@@ -123,8 +111,6 @@ key.set_contents_from_string('Fast as lightning!')
 
 ### 2026-07-10
 - **Enhancement:** Improved retry logic in `boto.ec2` to better handle throttling.
-
----
 
 ## Contributing
 
@@ -139,8 +125,6 @@ Contributions are welcome! Please read the guidelines below before opening a pul
 - [ ] Run `flake8` and `black` to ensure formatting complies with project standards.
 - [ ] Update the Changelog with a summary of your changes.
 - [ ] Add test cases for any new features or bug fixes.
-
----
 
 ## Project Stats
 
