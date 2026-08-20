@@ -1,31 +1,39 @@
-# Boto — AWS SDK for Python
+# Boto — Python interface to Amazon Web Services
 
 ![Python Version](https://img.shields.io/badge/python-3.8%20%7C%203.9%20%7C%203.10%20%7C%203.11%20%7C%203.12-blue)
 ![License](https://img.shields.io/badge/license-Apache%202.0-green)
-![GitHub last commit](https://img.shields.io/github/last-commit/shubhyagami/boto)
 ![Maintenance](https://img.shields.io/maintenance/yes/2026)
-![Stars](https://img.shields.io/github/stars/shubhyagami/boto?style=social)
-![Open Issues](https://img.shields.io/github/issues-raw/shubhyagami/boto)
+![GitHub Stars](https://img.shields.io/github/stars/shubhyagami/boto?style=social)
+![PyPI Downloads](https://img.shields.io/pypi/dm/boto)
 
 Boto is a Python package that provides interfaces to Amazon Web Services. It allows Python developers to write scripts and applications that interact with AWS services like S3, EC2, SQS, and more.
+
+## Table of Contents
+
+- [Quick Start](#quick-start)
+- [Features](#features)
+- [Example: Automating EC2 Instance Lifecycle](#example-automating-ec2-instance-lifecycle)
+- [Pro Tips](#pro-tips)
+- [Changelog](#changelog)
+- [Contributing](#contributing)
 
 ## Quick Start
 
 Get up and running with Boto in three steps:
 
-1. **Install**  
+1. **Install**
    ```bash
    pip install boto
    ```
 
-2. **Configure**  
+2. **Configure**
    Set your AWS credentials via environment variables or `~/.aws/credentials`:
    ```bash
    export AWS_ACCESS_KEY_ID=your_access_key
    export AWS_SECRET_ACCESS_KEY=your_secret_key
    ```
 
-3. **Use**  
+3. **Use**
    ```python
    import boto
 
@@ -38,18 +46,11 @@ Get up and running with Boto in three steps:
 ## Features
 
 - **Broad AWS Support:** Connect to and manage a wide variety of AWS services including compute, storage, databases, and messaging.
-- **Configuration:** Easily switch between multiple AWS accounts using profiles.
-- **Retry Logic:** Built-in exponential backoff and retries to handle API throttling gracefully.
-- **Debugging:** Streamlined debug logging to easily trace API calls and troubleshoot issues.
+- **Flexible Configuration:** Easily switch between multiple AWS accounts using profiles.
+- **Robust Retry Logic:** Built-in exponential backoff and retries to handle API throttling gracefully.
+- **Streamlined Debugging:** Built-in debug logging to easily trace API calls and troubleshoot issues.
 
-## Pro Tips
-
-- **Pagination:** Use `boto.s3.bucketlistresultset` to paginate through large result sets without running into memory issues.
-- **Retries:** Enable automatic retries by setting `boto.config.set('Boto', 'num_retries', 3)`.
-- **Profiles:** Switch between multiple AWS accounts with `boto.config.set('Boto', 'profile', 'myprofile')`.
-- **Logging:** Turn on debug logging to see API calls: `boto.set_stream_logger('boto')`.
-
-## Featured Use Case: Automating EC2 Instance Lifecycle
+## Example: Automating EC2 Instance Lifecycle
 
 Need to spin up a fleet of EC2 instances for a batch job and clean them up automatically? Boto makes it trivial.
 
@@ -81,23 +82,12 @@ ec2.terminate_instances(instance_ids=[instance.id])
 print(f"{instance.id} terminated.")
 ```
 
-## Release Highlights
+## Pro Tips
 
-### S3 Express One Zone Support
-Boto now fully supports the Amazon S3 Express One Zone storage class, which delivers single-digit millisecond latency for localized, high-performance workloads.
-
-```python
-from boto.s3.connection import S3Connection
-from boto.s3.key import Key
-
-conn = S3Connection()
-bucket = conn.create_bucket('my-express-bucket',
-                            location='us-east-1',
-                            storage_class='EXPRESS_ONEZONE')
-key = Key(bucket)
-key.key = 'hello.txt'
-key.set_contents_from_string('Fast as lightning!')
-```
+- **Pagination:** Use `boto.s3.bucketlistresultset` to paginate through large result sets without running into memory issues.
+- **Retries:** Enable automatic retries by setting `boto.config.set('Boto', 'num_retries', 3)`.
+- **Profiles:** Switch between multiple AWS accounts with `boto.config.set('Boto', 'profile', 'myprofile')`.
+- **Logging:** Turn on debug logging to see API calls: `boto.set_stream_logger('boto')`.
 
 ## Changelog
 
@@ -125,16 +115,6 @@ Contributions are welcome! Please read the guidelines below before opening a pul
 - [ ] Run `flake8` and `black` to ensure formatting complies with project standards.
 - [ ] Update the Changelog with a summary of your changes.
 - [ ] Add test cases for any new features or bug fixes.
-
-## Project Stats
-
-| Metric | Value |
-|--------|-------|
-| ⭐ GitHub Stars | 12,500+ |
-| 🔧 Open Issues | 23 |
-| 📦 PyPI Downloads | 4.2M/month |
-| ⏳ Average PR merge time | 2.1 days |
-| 🧪 Test coverage | 94% |
 
 ---
 
