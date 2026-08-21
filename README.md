@@ -6,18 +6,18 @@
 ![GitHub Stars](https://img.shields.io/github/stars/shubhyagami/boto?style=social)
 ![PyPI Downloads](https://img.shields.io/pypi/dm/boto)
 
-Boto is a Python package that provides interfaces to Amazon Web Services. It allows Python developers to write scripts and applications that interact with AWS services like S3, EC2, SQS, and more.
+Boto is a Python package that provides interfaces to Amazon Web Services (AWS). It allows Python developers to write scripts and applications that interact with AWS services such as S3, EC2, SQS, and more.
 
 ## Table of Contents
 
-- [Quick Start](#quick-start)
+- [Getting Started](#getting-started)
 - [Features](#features)
 - [Example: Automating EC2 Instance Lifecycle](#example-automating-ec2-instance-lifecycle)
 - [Pro Tips](#pro-tips)
 - [Changelog](#changelog)
 - [Contributing](#contributing)
 
-## Quick Start
+## Getting Started
 
 Get up and running with Boto in three steps:
 
@@ -45,7 +45,7 @@ Get up and running with Boto in three steps:
 
 ## Features
 
-- **Broad AWS Support:** Connect to and manage a wide variety of AWS services including compute, storage, databases, and messaging.
+- **Broad AWS Support:** Connect to and manage a wide variety of AWS services, including compute, storage, databases, and messaging.
 - **Flexible Configuration:** Easily switch between multiple AWS accounts using profiles.
 - **Robust Retry Logic:** Built-in exponential backoff and retries to handle API throttling gracefully.
 - **Streamlined Debugging:** Built-in debug logging to easily trace API calls and troubleshoot issues.
@@ -106,7 +106,7 @@ print(f"{instance.id} terminated.")
 
 Contributions are welcome! Please read the guidelines below before opening a pull request.
 
-1. **Pull Requests:** Provide a clear description of the changes you are making. Explain not just what you changed, but why.
+1. **Pull Requests:** Provide a clear description of your changes. Explain not just what you changed, but why.
 2. **Testing:** Ensure all tests pass via `pytest`. Add tests for any new functionality to maintain code coverage.
 3. **Code Review:** At least one maintainer must approve your branch before it can be merged.
 
