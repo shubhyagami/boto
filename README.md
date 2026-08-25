@@ -17,13 +17,15 @@ Boto is a Python package providing interfaces to Amazon Web Services (AWS). It e
 
 #### Install Boto
 
+To get started, install Boto using pip:
+
 ```bash
 pip install boto
 ```
 
 #### Configure Boto
 
-Set your AWS credentials via environment variables or `~/.aws/credentials`:
+To use Boto, you'll need to configure it with your AWS credentials. You can do this by setting environment variables or by storing them in `~/.aws/credentials`:
 
 ```bash
 export AWS_ACCESS_KEY_ID=your_access_key
@@ -31,6 +33,8 @@ export AWS_SECRET_ACCESS_KEY=your_secret_key
 ```
 
 #### Use Boto
+
+Here's an example of how to use Boto to connect to S3:
 
 ```python
 import boto
@@ -43,14 +47,14 @@ for bucket in s3.get_all_buckets():
 
 ### Key Features
 
-- **Universal AWS Support:** Connect to and manage multiple AWS services, including compute, storage, databases, and messaging.
+- **Universal AWS Support:** Boto provides interfaces to multiple AWS services, including compute, storage, databases, and messaging.
 - **Flexible Configuration:** Easily switch between multiple AWS accounts using profiles.
 - **Robust Retry Mechanism:** Built-in exponential backoff and retries to handle API throttling gracefully.
 - **Streamlined Debugging:** Built-in debug logging to easily trace API calls and troubleshoot issues.
 
 ### Example: Automating EC2 Instance Lifecycle
 
-Need to spin up a fleet of EC2 instances for a batch job and clean them up automatically? Boto makes it trivial.
+Need to spin up a fleet of EC2 instances for a batch job and clean them up automatically? Boto makes it trivial:
 
 ```python
 import boto
@@ -89,15 +93,22 @@ print(f"{instance.id} terminated.")
 
 ### Changelog
 
-#### 2026-08-06
+### Version 1.0.0 (2026-08-25)
+
+- **Initial Release:** Boto is now available for public use.
+
+### Version 1.0.1 (2026-08-06)
+
 - **New Feature:** Added support for Amazon S3 Express One Zone storage class.
 - **Bug Fix:** Fixed a race condition in `boto.sqs` message visibility timeout handling.
 - **Internal Upgrade:** Upgraded test suite to Python 3.13 compatibility (RC1).
 
-#### 2026-07-25
+### Version 1.0.2 (2026-07-25)
+
 - **Improvement:** Optimized DynamoDB batch writes to reduce latency by 15%.
 
-#### 2026-07-10
+### Version 1.0.3 (2026-07-10)
+
 - **Enhancement:** Improved retry logic in `boto.ec2` to better handle throttling.
 
 ### Contributing
@@ -117,8 +128,33 @@ Contributions are welcome! Please read the guidelines below before opening a pul
 ---
 
 *Maintained by Shubh Yagami.*
-![Python Version](https://img.shields.io/badge/python-3.8%20%7C%203.9%20%7C%203.10%20%7C%203.11%20%7C%203.12-blue)
-![License](https://img.shields.io/badge/license-Apache%202.0-green)
-![Maintenance](https://img.shields.io/maintenance/yes/2026)
-![GitHub Stars](https://img.shields.io/github/stars/shubhyagami/boto?style=social)
-![PyPI Downloads](https://img.shields.io/pypi/dm/boto)
+*Built with Python 3.10 and above.*
+*License: Apache 2.0.*
+*Maintenance active through 2026.*
+*GitHub stars: [Shubh Yagami](https://github.com/shubhyagami/boto)*
+
+### Features
+
+* Supports multiple AWS services, including compute, storage, databases, and messaging
+* Flexible configuration with profiles
+* Robust retry mechanism to handle API throttling
+* Streamlined debugging with built-in logging
+
+### What's New
+
+* Version 1.0.1 includes support for Amazon S3 Express One Zone storage class, fixed a race condition in `boto.sqs` message visibility timeout handling, and upgraded the test suite to Python 3.13 compatibility (RC1).
+* Version 1.0.2 includes optimization of DynamoDB batch writes to reduce latency by 15%.
+* Version 1.0.3 includes improved retry logic in `boto.ec2` to better handle throttling.
+
+### Installation
+
+* Install Boto using pip: `pip install boto`
+
+### Configuration
+
+* Configure Boto using environment variables or `~/.aws/credentials`: `export AWS_ACCESS_KEY_ID=your_access_key; export AWS_SECRET_ACCESS_KEY=your_secret_key`
+
+### Usage
+
+* Use Boto to connect to AWS services: `s3 = boto.connect_s3()`
+* Use Boto to automate EC2 instance lifecycle: `ec2 = boto.connect_ec2(); reservation = ec2.run_instances('ami-0abcdef1234567890', key_name='my-key', instance_type='t3.micro', min_count=1, max_count=1)`
