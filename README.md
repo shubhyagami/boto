@@ -93,23 +93,19 @@ print(f"{instance.id} terminated.")
 
 ### Changelog
 
-### Version 1.0.0 (2026-08-25)
-
-- **Initial Release:** Boto is now available for public use.
-
 ### Version 1.0.1 (2026-08-06)
 
-- **New Feature:** Added support for Amazon S3 Express One Zone storage class.
-- **Bug Fix:** Fixed a race condition in `boto.sqs` message visibility timeout handling.
-- **Internal Upgrade:** Upgraded test suite to Python 3.13 compatibility (RC1).
+- **Added Support for S3 Express One Zone Storage:** Optimized for high performance and durability.
+- **Improved SQS Message Visibility Timeout Handling:** Fixed a race condition that could cause messages to be stuck in processing.
+- **Upgraded Test Suite to Python 3.13 Compatibility (RC1):** Ensured compatibility with the latest Python version.
 
 ### Version 1.0.2 (2026-07-25)
 
-- **Improvement:** Optimized DynamoDB batch writes to reduce latency by 15%.
+- **Optimized DynamoDB Batch Writes:** Reduced latency by 15% for write-heavy applications.
 
 ### Version 1.0.3 (2026-07-10)
 
-- **Enhancement:** Improved retry logic in `boto.ec2` to better handle throttling.
+- **Improved Retry Logic in EC2:** Better handling of API throttling and retries.
 
 ### Contributing
 
@@ -125,14 +121,6 @@ Contributions are welcome! Please read the guidelines below before opening a pul
 - [ ] Update the Changelog with a summary of your changes.
 - [ ] Add test cases for any new features or bug fixes.
 
----
-
-*Maintained by Shubh Yagami.*
-*Built with Python 3.10 and above.*
-*License: Apache 2.0.*
-*Maintenance active through 2026.*
-*GitHub stars: [Shubh Yagami](https://github.com/shubhyagami/boto)*
-
 ### Features
 
 * Supports multiple AWS services, including compute, storage, databases, and messaging
@@ -140,21 +128,23 @@ Contributions are welcome! Please read the guidelines below before opening a pul
 * Robust retry mechanism to handle API throttling
 * Streamlined debugging with built-in logging
 
-### What's New
-
-* Version 1.0.1 includes support for Amazon S3 Express One Zone storage class, fixed a race condition in `boto.sqs` message visibility timeout handling, and upgraded the test suite to Python 3.13 compatibility (RC1).
-* Version 1.0.2 includes optimization of DynamoDB batch writes to reduce latency by 15%.
-* Version 1.0.3 includes improved retry logic in `boto.ec2` to better handle throttling.
-
 ### Installation
 
 * Install Boto using pip: `pip install boto`
+* Configure Boto with your AWS credentials by setting environment variables or storing them in `~/.aws/credentials`
 
-### Configuration
+### Badges
 
-* Configure Boto using environment variables or `~/.aws/credentials`: `export AWS_ACCESS_KEY_ID=your_access_key; export AWS_SECRET_ACCESS_KEY=your_secret_key`
+[![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-red.svg)](https://www.python.org/downloads/release/python-3100/)
 
-### Usage
+### GitHub Stars
 
-* Use Boto to connect to AWS services: `s3 = boto.connect_s3()`
-* Use Boto to automate EC2 instance lifecycle: `ec2 = boto.connect_ec2(); reservation = ec2.run_instances('ami-0abcdef1234567890', key_name='my-key', instance_type='t3.micro', min_count=1, max_count=1)`
+[![GitHub stars](https://img.shields.io/github/stars/shubhyagami/boto?style=social&label=GitHub)](https://github.com/shubhyagami/boto)
+
+### Maintained by
+
+*Maintained by Shubh Yagami.*
+*Built with Python 3.10 and above.*
+*License: Apache 2.0.*
+*Maintenance active through 2026.*
