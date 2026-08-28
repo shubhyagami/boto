@@ -1,150 +1,150 @@
-# Boto — Python Interface to Amazon Web Services
+# Boto — Python Interface to Amazon Web Services  
 
-### Overview
+## Overview  
+Boto is a low‑level Python SDK that provides seamless access to Amazon Web Services (AWS). It enables developers to script, automate, and integrate AWS services such as S3, EC2, SQS, DynamoDB, and more within Python applications.  
 
-Boto is a Python package providing interfaces to Amazon Web Services (AWS). It empowers developers to create scripts and applications interacting with AWS services like S3, EC2, SQS, and more.
+## Table of Contents  
+- [Getting Started](#getting-started)  
+- [Installation](#installation)  
+- [Quickstart](#quickstart)  
+- [Key Features](#key-features)  
+- [Usage Examples](#usage-examples)  
+- [Pro Tips](#pro-tips)  
+- [Changelog](#changelog)  
+- [Contributing](#contributing)  
 
-### Table of Contents
+## Getting Started  
 
-- [Getting Started](#getting-started)
-- [Key Features](#key-features)
-- [Example: Automating EC2 Instance Lifecycle](#example-automating-ec2-instance-lifecycle)
-- [Pro Tips](#pro-tips)
-- [Changelog](#changelog)
-- [Contributing](#contributing)
-
-### Getting Started
-
-#### Install Boto
-
-To get started, install Boto using pip:
-
+### Installation  
 ```bash
-pip install boto
-```
+pip install boto3   # The library is distributed as `boto3`; this repository uses the legacy `boto` name.
+```  
 
-#### Configure Boto
-
-To use Boto, you'll need to configure it with your AWS credentials. You can do this by setting environment variables or by storing them in `~/.aws/credentials`:
+### Configuration  
+Provide AWS credentials via environment variables or the shared credentials file:  
 
 ```bash
 export AWS_ACCESS_KEY_ID=your_access_key
 export AWS_SECRET_ACCESS_KEY=your_secret_key
-```
+```  
 
-#### Use Boto
+Or create `~/.aws/credentials`:  
 
-Here's an example of how to use Boto to connect to S3:
+```ini
+[default]
+aws_access_key_id = your_access_key
+aws_secret_access_key = your_secret_key
+```  
 
+### Quickstart (S3)  
 ```python
-import boto
+import boto3
+
+s3 = boto3.client('s3')
+for bucket in s3.list_buckets()['Buckets']:
+    print(bucket['Name'])
+```  
+
+## Key Features  
+- **Comprehensive AWS Coverage:** Official SDK for all AWS services.  
+- **Profiles & Configuration:** Switch easily between multiple AWS accounts.  
+- **Automatic Retries:** Built‑in exponential back‑off for throttled requests.  
+- **Debug Logging:** Detailed request/response tracing.  
+- **Pagination Helpers:** Efficient iteration over large result sets.  
+
+## Usage Examples  
+
+### EC2 Instance Lifecycle  
+```python
+import boto3
 import time
 
-s3 = boto.connect_s3()
-for bucket in s3.get_all_buckets():
-    print(bucket.name)
-```
+ec2 = boto3.resource('ec2')
+instances = ec2.create_instances(
+    ImageId='ami-0abcdef1234567890',
+    MinCount=1,
+    MaxCount=1,
+    InstanceType='t3.micro',
+    KeyName='my-key'
+)
+instance = instances[0]
+instance.wait_until_running()
+print(f"Instance {instance.id} is running at {instance.public_ip_address}")
 
-### Key Features
+# ... perform work ...
 
-- **Universal AWS Support:** Boto provides interfaces to multiple AWS services, including compute, storage, databases, and messaging.
-- **Flexible Configuration:** Easily switch between multiple AWS accounts using profiles.
-- **Robust Retry Mechanism:** Built-in exponential backoff and retries to handle API throttling gracefully.
-- **Streamlined Debugging:** Built-in debug logging to easily trace API calls and troubleshoot issues.
+instance.terminate()
+```  
 
-### Example: Automating EC2 Instance Lifecycle
-
-Need to spin up a fleet of EC2 instances for a batch job and clean them up automatically? Boto makes it trivial:
-
+### S3 File Upload  
 ```python
-import boto
-import time
+s3 = boto3.client('s3')
+s3.upload_file('myfile.txt', 'my-bucket', 'myfile.txt')
+```  
 
-ec2 = boto.connect_ec2()
+### DynamoDB Table Creation  
+```python
+dynamodb = boto3.resource('dynamodb')
+table = dynamodb.create_table(
+    TableName='my-table',
+    KeySchema=[{'AttributeName': 'id', 'KeyType': 'HASH'}],
+    AttributeDefinitions=[{'AttributeName': 'id', 'AttributeType': 'S'}],
+    BillingMode='PAY_PER_REQUEST'
+)
+table.wait_until_exists()
+```  
 
-# Launch an instance
-reservation = ec2.run_instances('ami-0abcdef1234567890',
-                               key_name='my-key',
-                               instance_type='t3.micro',
-                               min_count=1, max_count=1)
-instance = reservation.instances[0]
-print(f"Launching {instance.id}...")
+## Pro Tips  
+- **Enable Debug Logging:** `session = boto3.Session(); session.set_debug(True)`  
+- **Reuse Sessions:** `session = boto3.Session(profile_name='prod')`  
+- **Client‑Side Pagination:**  
+  ```python
+  paginator = client.get_paginator('list_objects_v2')
+  for page in paginator.paginate(Bucket='my-bucket'):
+      for obj in page.get('Contents', []):
+          print(obj['Key'])
+  ```  
+- **Configure Retries:**  
+  ```python
+  import botocore
+  config = botocore.config.Config(retries={'max_attempts': 10})
+  client = boto3.client('s3', config=config)
+  ```  
 
-# Wait for it to be running
-while instance.state != 'running':
-    time.sleep(5)
-    instance.update()
+## Changelog  
+### 1.0.3 (2026‑07‑10)  
+- Enhanced EC2 retry logic for better throttling handling.  
 
-print(f"{instance.id} is now running at {instance.ip_address}")
+### 1.0.2 (2026‑07‑25)  
+- Optimized DynamoDB batch writes, reducing latency by ~15 %.  
 
-# ... do your work ...
+### 1.0.1 (2026‑08‑06)  
+- Added support for S3 Express One Zone storage.  
+- Fixed SQS visibility‑timeout race condition.  
+- Updated test suite for Python 3.13 RC1 compatibility.  
 
-# Terminate when done
-ec2.terminate_instances(instance_ids=[instance.id])
-print(f"{instance.id} terminated.")
-```
+## Contributing  
+We welcome contributions! Please follow these steps:  
 
-### Pro Tips
+1. **Fork & Sync** – Keep your fork current with the upstream repository.  
+2. **Run Tests** – Execute `pytest` to verify existing functionality.  
+3. **Add Tests** – Include tests for any new code.  
+4. **Code Style** – Run `flake8` and `black` before submitting.  
+5. **Changelog Entry** – Summarize your changes in the changelog.  
 
-- **Efficient Pagination:** Use `boto.s3.bucketlistresultset` to paginate through large result sets without running into memory issues.
-- **Retries:** Enable automatic retries by setting `boto.config.set('Boto', 'num_retries', 3)`.
-- **Profiles:** Switch between multiple AWS accounts with `boto.config.set('Boto', 'profile', 'myprofile')`.
-- **Logging:** Turn on debug logging to see API calls: `boto.set_stream_logger('boto')`.
+When opening a Pull Request:  
+- Provide a clear description of the change and its motivation.  
+- Reference any related issues.  
+- Ensure all checks pass.  
 
-### Changelog
+## Badges  
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)  
+[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)  
+[![GitHub Stars](https://img.shields.io/github/stars/shubhyagami/boto?style=social&label=GitHub)](https://github.com/shubhyagami/boto)  
 
-### Version 1.0.1 (2026-08-06)
+## Maintained By  
+- **Shubh Yagami** – *Maintainer*  
+- **License:** Apache 2.0  
+- **Runtime:** Python 3.10+  
 
-- **Added Support for S3 Express One Zone Storage:** Optimized for high performance and durability.
-- **Improved SQS Message Visibility Timeout Handling:** Fixed a race condition that could cause messages to be stuck in processing.
-- **Upgraded Test Suite to Python 3.13 Compatibility (RC1):** Ensured compatibility with the latest Python version.
-
-### Version 1.0.2 (2026-07-25)
-
-- **Optimized DynamoDB Batch Writes:** Reduced latency by 15% for write-heavy applications.
-
-### Version 1.0.3 (2026-07-10)
-
-- **Improved Retry Logic in EC2:** Better handling of API throttling and retries.
-
-### Contributing
-
-Contributions are welcome! Please read the guidelines below before opening a pull request.
-
-1. **Pull Requests:** Provide a clear description of your changes. Explain not just what you changed, but why.
-2. **Testing:** Ensure all tests pass via `pytest`. Add tests for any new functionality to maintain code coverage.
-3. **Code Review:** At least one maintainer must approve your branch before it can be merged.
-
-**Before You Open a PR:**
-- [ ] Ensure your fork is synchronized with the central repository.
-- [ ] Run `flake8` and `black` to ensure formatting complies with project standards.
-- [ ] Update the Changelog with a summary of your changes.
-- [ ] Add test cases for any new features or bug fixes.
-
-### Features
-
-* Supports multiple AWS services, including compute, storage, databases, and messaging
-* Flexible configuration with profiles
-* Robust retry mechanism to handle API throttling
-* Streamlined debugging with built-in logging
-
-### Installation
-
-* Install Boto using pip: `pip install boto`
-* Configure Boto with your AWS credentials by setting environment variables or storing them in `~/.aws/credentials`
-
-### Badges
-
-[![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.10+](https://img.shields.io/badge/python-3.10+-red.svg)](https://www.python.org/downloads/release/python-3100/)
-
-### GitHub Stars
-
-[![GitHub stars](https://img.shields.io/github/stars/shubhyagami/boto?style=social&label=GitHub)](https://github.com/shubhyagami/boto)
-
-### Maintained by
-
-*Maintained by Shubh Yagami.*
-*Built with Python 3.10 and above.*
-*License: Apache 2.0.*
-*Maintenance active through 2026.*
+*Active maintenance through 2026.*
