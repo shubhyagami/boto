@@ -1,28 +1,23 @@
-# Boto – Python SDK for Amazon Web Services  
+# boto – Python SDK for Amazon Web Services  
+
+[![PyPI version](https://img.shields.io/pypi/v/boto.svg)](https://pypi.org/project/boto/)  
+[![Python versions](https://img.shields.io/pypi/pyversions/boto.svg)](https://pypi.org/project/boto/)  
+[![License](https://img.shields.io/pypi/l/boto.svg)](https://opensource.org/licenses/Apache-2.0)  
+[![Docs](https://img.shields.io/badge/docs-%F0%9F%93%84-blue.svg)](https://boto.readthedocs.io/)  
 
 ## Overview  
-Boto is the official Python SDK for Amazon Web Services. It provides low‑level access to all AWS services, enabling you to script, automate, and integrate AWS functionality into Python applications.
-
-## Table of Contents  
-- [Getting Started](#getting-started)  
-- [Installation](#installation)  
-- [Quickstart (S3)](#quickstart-s3)  
-- [Key Features](#key-features)  
-- [Usage Examples](#usage-examples)  
-- [Pro Tips](#pro-tips)  
-- [Changelog](#changelog)  
-- [Contributing](#contributing)  
-- [License & Metadata](#license--metadata)  
+`boto` is the official Python SDK for Amazon Web Services. It provides low‑level access to all AWS services, enabling you to script, automate, and integrate AWS functionality into Python applications.
 
 ## Getting Started  
 
 ### Installation  
 ```bash
-pip install boto3   # The library is distributed as `boto3`; this repository uses the legacy `boto` name.
-```
+pip install boto3
+```  
+The package is distributed as `boto3`; the repository uses the legacy `boto` name.
 
 ### Configuration  
-Provide AWS credentials through environment variables, the shared credentials file, or an explicit configuration file.
+Provide AWS credentials via environment variables, the shared credentials file, or an explicit configuration file.
 
 ```bash
 # Environment variables
@@ -37,7 +32,7 @@ aws_access_key_id = your_access_key
 aws_secret_access_key = your_secret_key
 ```
 
-### Quickstart (S3)  
+## Quickstart (S3)  
 ```python
 import boto3
 
@@ -120,16 +115,9 @@ table.wait_until_exists()
   ```  
 
 ## Changelog  
-### 1.0.3 (2026‑07‑10)  
-- Enhanced EC2 retry logic for better throttling handling.  
-
-### 1.0.2 (2026‑07‑25)  
-- Optimized DynamoDB batch writes, reducing latency by ~15 %.  
-
-### 1.0.1 (2026‑08‑06)  
-- Added support for S3 Express One Zone storage.  
-- Fixed SQS visibility‑timeout race condition.  
-- Updated test suite for Python 3.13 RC1 compatibility.  
+**1.0.3 (2026‑07‑10)** – Enhanced EC2 retry logic for better throttling handling.  
+**1.0.2 (2026‑07‑25)** – Optimized DynamoDB batch writes, reducing latency by ~15 %.  
+**1.0.1 (2026‑08‑06)** – Added support for S3 Express One Zone storage; fixed SQS visibility‑timeout race condition; updated test suite for Python 3.13 RC1 compatibility.  
 
 ## Contributing  
 We welcome contributions! Follow these steps:
@@ -140,17 +128,15 @@ We welcome contributions! Follow these steps:
 4. **Code Style** – Run `flake8` and `black` before submitting.  
 5. **Changelog Entry** – Summarize your changes in the changelog.  
 
-When opening a Pull Request:
-
+When opening a Pull Request:  
 - Provide a clear description of the change and its motivation.  
 - Reference any related issues.  
 - Ensure all checks pass.  
 
 ## License & Metadata  
-
 - **License:** Apache 2.0  
 - **Python Version:** 3.10+  
 - **Maintainer:** Shubh Yagami  
 - **Runtime:** Python 3.10+  
 
-*Project actively maintained through 2026.*
+*The project is actively maintained through 2026.*
