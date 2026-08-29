@@ -1,40 +1,41 @@
-# Boto — Python Interface to Amazon Web Services  
+# Boto – Python SDK for Amazon Web Services  
 
 ## Overview  
-Boto is a low‑level Python SDK that provides seamless access to Amazon Web Services (AWS). It enables developers to script, automate, and integrate AWS services such as S3, EC2, SQS, DynamoDB, and more within Python applications.  
+Boto is the official Python SDK for Amazon Web Services. It provides low‑level access to all AWS services, enabling you to script, automate, and integrate AWS functionality into Python applications.
 
 ## Table of Contents  
 - [Getting Started](#getting-started)  
 - [Installation](#installation)  
-- [Quickstart](#quickstart)  
+- [Quickstart (S3)](#quickstart-s3)  
 - [Key Features](#key-features)  
 - [Usage Examples](#usage-examples)  
 - [Pro Tips](#pro-tips)  
 - [Changelog](#changelog)  
 - [Contributing](#contributing)  
+- [License & Metadata](#license--metadata)  
 
 ## Getting Started  
 
 ### Installation  
 ```bash
 pip install boto3   # The library is distributed as `boto3`; this repository uses the legacy `boto` name.
-```  
+```
 
 ### Configuration  
-Provide AWS credentials via environment variables or the shared credentials file:  
+Provide AWS credentials through environment variables, the shared credentials file, or an explicit configuration file.
 
 ```bash
+# Environment variables
 export AWS_ACCESS_KEY_ID=your_access_key
 export AWS_SECRET_ACCESS_KEY=your_secret_key
-```  
-
-Or create `~/.aws/credentials`:  
+```
 
 ```ini
+# ~/.aws/credentials
 [default]
 aws_access_key_id = your_access_key
 aws_secret_access_key = your_secret_key
-```  
+```
 
 ### Quickstart (S3)  
 ```python
@@ -43,14 +44,14 @@ import boto3
 s3 = boto3.client('s3')
 for bucket in s3.list_buckets()['Buckets']:
     print(bucket['Name'])
-```  
+```
 
 ## Key Features  
-- **Comprehensive AWS Coverage:** Official SDK for all AWS services.  
-- **Profiles & Configuration:** Switch easily between multiple AWS accounts.  
-- **Automatic Retries:** Built‑in exponential back‑off for throttled requests.  
-- **Debug Logging:** Detailed request/response tracing.  
-- **Pagination Helpers:** Efficient iteration over large result sets.  
+- **Full AWS Coverage** – Official SDK for all AWS services.  
+- **Profiles & Configuration** – Switch easily between multiple accounts.  
+- **Automatic Retries** – Built‑in exponential back‑off for throttled requests.  
+- **Debug Logging** – Detailed request/response tracing.  
+- **Pagination Helpers** – Efficient iteration over large result sets.  
 
 ## Usage Examples  
 
@@ -74,13 +75,13 @@ print(f"Instance {instance.id} is running at {instance.public_ip_address}")
 # ... perform work ...
 
 instance.terminate()
-```  
+```
 
 ### S3 File Upload  
 ```python
 s3 = boto3.client('s3')
 s3.upload_file('myfile.txt', 'my-bucket', 'myfile.txt')
-```  
+```
 
 ### DynamoDB Table Creation  
 ```python
@@ -92,19 +93,26 @@ table = dynamodb.create_table(
     BillingMode='PAY_PER_REQUEST'
 )
 table.wait_until_exists()
-```  
+```
 
 ## Pro Tips  
-- **Enable Debug Logging:** `session = boto3.Session(); session.set_debug(True)`  
-- **Reuse Sessions:** `session = boto3.Session(profile_name='prod')`  
-- **Client‑Side Pagination:**  
+- **Enable Debug Logging**  
+  ```python
+  session = boto3.Session()
+  session.set_debug(True)
+  ```  
+- **Reuse Sessions with Profiles**  
+  ```python
+  session = boto3.Session(profile_name='prod')
+  ```  
+- **Client‑Side Pagination**  
   ```python
   paginator = client.get_paginator('list_objects_v2')
   for page in paginator.paginate(Bucket='my-bucket'):
       for obj in page.get('Contents', []):
           print(obj['Key'])
   ```  
-- **Configure Retries:**  
+- **Configure Retries**  
   ```python
   import botocore
   config = botocore.config.Config(retries={'max_attempts': 10})
@@ -124,7 +132,7 @@ table.wait_until_exists()
 - Updated test suite for Python 3.13 RC1 compatibility.  
 
 ## Contributing  
-We welcome contributions! Please follow these steps:  
+We welcome contributions! Follow these steps:
 
 1. **Fork & Sync** – Keep your fork current with the upstream repository.  
 2. **Run Tests** – Execute `pytest` to verify existing functionality.  
@@ -132,19 +140,17 @@ We welcome contributions! Please follow these steps:
 4. **Code Style** – Run `flake8` and `black` before submitting.  
 5. **Changelog Entry** – Summarize your changes in the changelog.  
 
-When opening a Pull Request:  
+When opening a Pull Request:
+
 - Provide a clear description of the change and its motivation.  
 - Reference any related issues.  
 - Ensure all checks pass.  
 
-## Badges  
-[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)  
-[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)  
-[![GitHub Stars](https://img.shields.io/github/stars/shubhyagami/boto?style=social&label=GitHub)](https://github.com/shubhyagami/boto)  
+## License & Metadata  
 
-## Maintained By  
-- **Shubh Yagami** – *Maintainer*  
 - **License:** Apache 2.0  
+- **Python Version:** 3.10+  
+- **Maintainer:** Shubh Yagami  
 - **Runtime:** Python 3.10+  
 
-*Active maintenance through 2026.*
+*Project actively maintained through 2026.*
