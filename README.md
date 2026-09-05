@@ -1,8 +1,8 @@
 # boto – Python SDK for Amazon Web Services
 
-[![PyPI version](https://img.shields.io/pypi/v/boto3.svg)](https://pypi.org/project/boto3/)
-[![Python versions](https://img.shields.io/pypi/pyversions/boto3.svg)](https://pypi.org/project/boto3/)
-[![License](https://img.shields.io/pypi/l/boto3.svg)](LICENSE)
+[![PyPI version](https://img.shields.io/pypi/v/boto.svg)](https://pypi.org/project/boto/)
+[![Python versions](https://img.shields.io/pypi/pyversions/boto.svg)](https://pypi.org/project/boto/)
+[![License](https://img.shields.io/pypi/l/boto.svg)](LICENSE)
 [![Build status](https://github.com/shubhyagami/boto/actions/workflows/python.yml/badge.svg)](https://github.com/shubhyagami/boto/actions)
 [![Docs](https://img.shields.io/badge/docs-AWS%20API%20Reference-blue.svg)](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html)
 
@@ -11,13 +11,13 @@
 ## Quick start
 
 ```bash
-pip install boto3
+pip install boto
 ```
 
 ```python
 import boto3
 
-# List all S3 buckets
+# list all S3 buckets
 s3 = boto3.client('s3')
 for bucket in s3.list_buckets()["Buckets"]:
     print(bucket["Name"])
@@ -27,27 +27,26 @@ for bucket in s3.list_buckets()["Buckets"]:
 
 ---
 
-## What is Boto3?
+## What is boto?
 
-Boto3 is the official AWS SDK for Python. It lets you:
+boto is the official AWS SDK for Python. It provides both:
 
-- Work at **low‑level** with raw clients for fine‑grained control over any AWS service.
-- Use **high‑level** resources (e.g. `boto3.resource('s3')`) that wrap the client API in a more Pythonic, object‑oriented style.
-- Benefit from automatic handling of retries, pagination, and region selection.
-- Seamlessly integrate with AWS credentials, roles, and profiles.
+* **Low‑level clients** – a thin wrapper around the raw AWS JSON APIs, giving you full control over every request.
+* **High‑level resources** – an object‑oriented interface that wraps the client API in a more Pythonic style.
+
+All features are available in the same version, so you can pick the abstraction that fits your use case.
 
 ---
 
 ## Features
 
-| Feature | Description |
-|--------|-------------|
-| **Full AWS coverage** | Official SDK that’s always in sync with the latest services and APIs. |
-| **Client and Resource APIs** | Choose the abstraction that best matches your use case. |
-| **Paginators** | Turn multi‑page responses into convenient Python iterators via `get_paginator`. |
-| **Automatic retries** | Exponential back‑off for throttling and transient failures. |
-| **Multi‑account and role support** | Easy profile switching, region selection, and role assumption. |
-| **Debug logging** | `boto3.set_stream_logger('')` logs raw HTTP traffic for troubleshooting. |
+| # | Feature | Why it matters |
+|---|---------|---------------|
+| 1 | Full AWS coverage | Syncs with AWS releases and supports every service. |
+| 2 | Client & resource APIs | Choose the abstraction that best matches your task. |
+| 3 | Automatic retries & pagination | Exponential‑backoff and iterators make handling limits painless. |
+| 4 | Seamless credential handling | Supports profiles, roles, environment variables and instances. |
+| 5 | Debug logging | `boto3.set_stream_logger('')` prints raw HTTP traffic. |
 
 ---
 
@@ -80,7 +79,7 @@ instance.terminate()
 ```python
 import boto3
 
-# Upload a file
+# upload a file
 s3 = boto3.client('s3')
 s3.upload_file('myfile.txt', 'my-bucket', 'myfile.txt')
 ```
@@ -132,8 +131,8 @@ boto3.set_stream_logger('')
 
 ## Recent changelog
 
-- **1.0.3 (2026‑07‑10)** – Improved EC2 retry logic for throttling.
-- **1.0.2 (2026‑07‑25)** – Optimized DynamoDB batch writes (~15 % latency reduction).
+- **1.0.3 (2026‑07‑10)** – Improved EC2 retry logic for throttling.  
+- **1.0.2 (2026‑07‑25)** – Optimized DynamoDB batch writes (~15 % latency reduction).  
 - **1.0.1 (2026‑08‑06)** – Added S3 Express One Zone support, fixed SQS visibility‑timeout race, updated tests for Python 3.13.
 
 ---
@@ -142,7 +141,7 @@ boto3.set_stream_logger('')
 
 1. Fork the repository and clone your fork.  
 2. Work in a dedicated feature branch.  
-3. Run `pytest` to ensure all tests pass.  
+3. Run `pytest` to make sure all tests pass.  
 4. Add or update tests for any new or modified functionality.  
 5. Run `flake8` and `black` to format the code.  
 6. Update the changelog with your changes.  
