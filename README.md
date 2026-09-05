@@ -23,30 +23,32 @@ for bucket in s3.list_buckets()["Buckets"]:
     print(bucket["Name"])
 ```
 
-> **Tip** – For multi‑account setups, store named profiles in `~/.aws/credentials` and create a session with `boto3.Session(profile_name="dev")`.
+> ⚠️ **Tip** – For multi‑account setups, store named profiles in `~/.aws/credentials` and create a session with `boto3.Session(profile_name="dev")`.
 
 ---
 
 ## What is boto?
 
-boto is the official AWS SDK for Python. It provides both:
+boto is the official AWS SDK for Python.  
+It offers two layers of abstraction:
 
-* **Low‑level clients** – a thin wrapper around the raw AWS JSON APIs, giving you full control over every request.
-* **High‑level resources** – an object‑oriented interface that wraps the client API in a more Pythonic style.
+| Layer | What it is | When to use |
+|-------|------------|-------------|
+| Low‑level clients | Thin wrapper around raw AWS JSON APIs | When you need fine‑grained control or want to call rarely‑used services |
+| High‑level resources | Object‑oriented interface built on top of the client | When you prefer a Pythonic, higher‑level API |
 
-All features are available in the same version, so you can pick the abstraction that fits your use case.
+Both layers live in the same package, so you can mix and match as needed.
 
 ---
 
 ## Features
 
-| # | Feature | Why it matters |
-|---|---------|---------------|
-| 1 | Full AWS coverage | Syncs with AWS releases and supports every service. |
-| 2 | Client & resource APIs | Choose the abstraction that best matches your task. |
-| 3 | Automatic retries & pagination | Exponential‑backoff and iterators make handling limits painless. |
-| 4 | Seamless credential handling | Supports profiles, roles, environment variables and instances. |
-| 5 | Debug logging | `boto3.set_stream_logger('')` prints raw HTTP traffic. |
+- **Full AWS coverage** – all services are available as soon as AWS releases them.
+- **Dual abstraction** – choose between clients and resources.
+- **Automatic retries & pagination** – built‑in back‑off policies and iterator helpers.
+- **Credential handling** – profiles, environment variables, IAM roles, and instance profiles are all supported.
+- **Debug logging** – `boto3.set_stream_logger('')` outputs raw HTTP traffic.
+- **Type‑annotated APIs** – improved IDE support and static analysis.
 
 ---
 
@@ -140,12 +142,12 @@ boto3.set_stream_logger('')
 ## Contributing
 
 1. Fork the repository and clone your fork.  
-2. Work in a dedicated feature branch.  
-3. Run `pytest` to make sure all tests pass.  
-4. Add or update tests for any new or modified functionality.  
+2. Create a feature branch.  
+3. Run `pytest` to confirm all tests pass.  
+4. Add or update tests for your changes.  
 5. Run `flake8` and `black` to format the code.  
-6. Update the changelog with your changes.  
-7. Submit a pull request; make sure the CI pipeline passes.
+6. Update the changelog with your commit.  
+7. Submit a pull request – the CI pipeline must pass before merging.
 
 ---
 
