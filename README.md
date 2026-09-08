@@ -1,29 +1,36 @@
 # boto – Python SDK for Amazon Web Services
 
-[![PyPI version](https://img.shields.io/pypi/v/boto.svg)](https://pypi.org/project/boto/)
-[![Python versions](https://img.shields.io/pypi/pyversions/boto.svg)](https://pypi.org/project/boto/)
-[![License](https://img.shields.io/pypi/l/boto.svg)](LICENSE)
-[![Build status](https://github.com/shubhyagami/boto/actions/workflows/python.yml/badge.svg)](https://github.com/shubhyagami/boto/actions)
+[![PyPI version](https://img.shields.io/pypi/v/boto.svg)](https://pypi.org/project/boto/)  
+[![Python versions](https://img.shields.io/pypi/pyversions/boto.svg)](https://pypi.org/project/boto/)  
+[![License](https://img.shields.io/pypi/l/boto.svg)](LICENSE)  
+[![Build status](https://github.com/shubhyagami/boto/actions/workflows/python.yml/badge.svg)](https://github.com/shubhyagami/boto/actions)  
 [![Docs](https://img.shields.io/badge/docs-AWS%20API%20Reference-blue.svg)](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html)
 
 ---
 
-## About
+## Overview
 
-boto is the official AWS SDK for Python. It provides two layers of abstraction:
+`boto` is the officially maintained Python SDK for Amazon Web Services.  
+It bundles two layers of abstraction:
 
-* **Low‑level clients** – thin wrappers around the raw AWS JSON APIs.  
-* **High‑level resources** – object‑oriented interfaces built on top of the clients.
+| Layer | Description |
+|-------|-------------|
+| **Low‑level clients** | Thin wrappers that map directly to the AWS JSON APIs. |
+| **High‑level resources** | Object‑oriented interfaces that build on top of the clients. |
 
-Both layers live in the same package, so you can mix and match them as needed.
+Both layers live in the same package, making it easy to mix and match as needed.
 
 ---
 
-## Getting started
+## Installation
 
 ```bash
 pip install boto
 ```
+
+---
+
+## Quick Start
 
 ```python
 import boto3
@@ -34,24 +41,24 @@ for bucket in s3.list_buckets()["Buckets"]:
     print(bucket["Name"])
 ```
 
-> ⚠️ For multi‑account setups, store named profiles in `~/.aws/credentials` and create a session with `boto3.Session(profile_name="dev")`.
+> **Tip** – For multi‑account setups, store named profiles in `~/.aws/credentials` and create a session with `boto3.Session(profile_name="dev")`.
 
 ---
 
-## Core features
+## Core Features
 
-- **Full AWS coverage** – every service is available as soon as AWS releases it.  
-- **Dual abstraction** – choose between low‑level clients or high‑level resources.  
-- **Automatic retries & pagination** – built‑in exponential back‑off and iterator helpers.  
-- **Flexible credential handling** – profiles, environment variables, IAM roles, instance profiles, and more.  
-- **Debug logging** – `boto3.set_stream_logger('')` dumps raw HTTP traffic.  
-- **Type‑annotated APIs** – improved IDE support and static type checking.
+- Full AWS service coverage as soon as AWS releases a new API.  
+- Dual abstraction – choose low‑level clients or high‑level resources.  
+- Automatic retries & pagination with exponential back‑off.  
+- Flexible credential handling: profiles, env vars, IAM roles, instance profiles, etc.  
+- Debug logging: `boto3.set_stream_logger('')` prints raw HTTP traffic.  
+- Type‑annotated APIs for better IDE support and static type checking.
 
 ---
 
-## Common usage patterns
+## Common Usage Patterns
 
-#### EC2
+### EC2
 
 ```python
 import boto3
@@ -68,12 +75,12 @@ instance = instances[0]
 instance.wait_until_running()
 print(f"Instance {instance.id} running at {instance.public_ip_address}")
 
-# ... do work ...
+# … do work …
 
 instance.terminate()
 ```
 
-#### S3
+### S3
 
 ```python
 import boto3
@@ -83,7 +90,7 @@ s3 = boto3.client('s3')
 s3.upload_file('myfile.txt', 'my-bucket', 'myfile.txt')
 ```
 
-#### DynamoDB
+### DynamoDB
 
 ```python
 import boto3
@@ -100,9 +107,9 @@ table.wait_until_exists()
 
 ---
 
-## Advanced topics
+## Advanced Topics
 
-#### Client‑side pagination
+### Client‑side Pagination
 
 ```python
 paginator = s3.get_paginator('list_objects_v2')
@@ -111,7 +118,7 @@ for page in paginator.paginate(Bucket='my-bucket'):
         print(obj['Key'])
 ```
 
-#### Custom retry policy
+### Custom Retry Policy
 
 ```python
 import botocore
@@ -119,7 +126,7 @@ config = botocore.config.Config(retries={'max_attempts': 10})
 client = boto3.client('s3', config=config)
 ```
 
-#### Enable debug logs
+### Enable Debug Logging
 
 ```python
 import boto3
@@ -128,26 +135,26 @@ boto3.set_stream_logger('')
 
 ---
 
-## Recent changelog
+## Recent Changelog
 
-- **1.0.3 (2026‑07‑10)** – Improved EC2 retry logic for throttling.  
-- **1.0.2 (2026‑07‑25)** – Optimized DynamoDB batch writes (~15 % latency reduction).  
-- **1.0.1 (2026‑08‑06)** – Added S3 Express One Zone support, fixed SQS visibility‑timeout race, updated tests for Python 3.13.
+* **1.0.3 (2026‑07‑10)** – Improved EC2 retry logic for throttling.  
+* **1.0.2 (2026‑07‑25)** – Optimized DynamoDB batch writes (~15 % latency reduction).  
+* **1.0.1 (2026‑08‑06)** – Added S3 Express One Zone support, fixed SQS visibility‑timeout race, updated tests for Python 3.13.
 
 ---
 
 ## Contributing
 
-1. Fork the repository and clone your fork.  
+1. Fork and clone the repository.  
 2. Create a feature branch.  
 3. Run `pytest` to confirm all tests pass.  
 4. Add or update tests for your changes.  
 5. Run `flake8` and `black` to format the code.  
-6. Update the changelog with your commit.  
+6. Update the changelog with your changes.  
 7. Submit a pull request – the CI pipeline must pass before merging.
 
 ---
 
 ## License
 
-Apache 2.0 – see the [LICENSE](LICENSE) file for details.
+Apache 2.0 – see the [LICENSE](LICENSE) file.
