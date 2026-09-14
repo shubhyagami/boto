@@ -1,40 +1,47 @@
 # boto3 – Python SDK for Amazon Web Services
 
-[![PyPI version](https://img.shields.io/pypi/v/boto3.svg)](https://pypi.org/project/boto3/)
-[![Python versions](https://img.shields.io/pypi/pyversions/boto3.svg)](https://pypi.org/project/boto3/)
-[![License](https://img.shields.io/pypi/l/boto3.svg)](LICENSE)
-[![Build status](https://github.com/shubhyagami/boto/actions/workflows/python.yml/badge.svg)](https://github.com/shubhyagami/boto/actions)
-[![Docs](https://img.shields.io/badge/docs-AWS%20API%20Reference-blue.svg)](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html)
+![PyPI version](https://img.shields.io/pypi/v/boto3.svg)
+![Supported Python](https://img.shields.io/pypi/pyversions/boto3.svg)
+![License](https://img.shields.io/pypi/l/boto3.svg)
+![Build status](https://github.com/shubhyagami/boto/actions/workflows/python.yml/badge.svg)
 
-## 📦 Installation
+**boto3** is Amazon Web Services’ official Python library. It provides a thin, well‑documented interface to every AWS service, all in a single, actively maintained package.
+
+---
+
+## Getting started
 
 ```bash
 pip install boto3
 ```
 
-## 🚀 Quick start
-
 ```python
 import boto3
 
-# List all S3 buckets
+# List S3 buckets
 s3 = boto3.client('s3')
 for bucket in s3.list_buckets()["Buckets"]:
     print(bucket["Name"])
 ```
 
-> **Tip** – For multi‑account setups, store named profiles in `~/.aws/credentials` and create a session with `boto3.Session(profile_name="dev")`.
+> For multi‑account workflows, store named profiles in `~/.aws/credentials` and create a session with `boto3.Session(profile_name="dev")`.
 
-## 💡 Core features
+---
 
-- **Full AWS service coverage** – new APIs are available immediately after release.
-- **Dual abstraction** – use low‑level clients (`boto3.client`) or high‑level resources (`boto3.resource`).
-- **Automatic retries & pagination** – exponential back‑off is built in.
-- **Flexible authentication** – environment variables, credentials file, IAM roles, instance profiles, etc.
-- **Debug logging** – `boto3.set_stream_logger('')` prints raw HTTP traffic.
-- **Type‑annotated API** – improved IDE support and static type checking.
+## Core features
 
-## 📄 Usage examples
+| Feature | Description |
+|---------|-------------|
+| **Complete service coverage** | Access all current AWS APIs immediately after release. |
+| **Dual abstraction** | Work with low‑level clients (`boto3.client`) or high‑level resources (`boto3.resource`). |
+| **Automatic retries & pagination** | Exponential back‑off and built‑in paginators save you from re‑implementing error handling. |
+| **Flexible authentication** | Supports env vars, credentials files, IAM roles, instance profiles, and more. |
+| **Debug logging** | `boto3.set_stream_logger('')` prints raw HTTP traffic for troubleshooting. |
+| **Type annotated** | Pydantic‑style annotations aid IDEs and static type checkers. |
+
+---
+
+## Usage examples
 
 ### EC2
 
@@ -83,7 +90,9 @@ table = dynamodb.create_table(
 table.wait_until_exists()
 ```
 
-## 🔧 Advanced topics
+---
+
+## Advanced topics
 
 ### Client‑side pagination
 
@@ -111,22 +120,31 @@ import boto3
 boto3.set_stream_logger('')
 ```
 
-## 📚 Changelog
+---
 
-- **1.0.3 (2026‑07‑10)** – Improved EC2 retry logic for throttling.  
-- **1.0.2 (2026‑07‑25)** – Optimized DynamoDB batch writes (~15 % latency reduction).  
-- **1.0.1 (2026‑08‑06)** – Added S3 Express One Zone support, fixed SQS visibility‑timeout race, updated tests for Python 3.13.
+## Changelog
 
-## 🤝 Contributing
+* **1.0.3 (2026‑07‑10)** – Improved EC2 retry logic for throttling.  
+* **1.0.2 (2026‑07‑25)** – Optimized DynamoDB batch writes (~15 % latency reduction).  
+* **1.0.1 (2026‑08‑06)** – Added S3 Express One Zone support, fixed SQS visibility‑timeout race, updated tests for Python 3.13.
 
-1. Fork and clone the repository.  
+*(Full changelog is in [CHANGELOG.md](CHANGELOG.md))*
+
+
+---
+
+## Contributing
+
+1. Fork the repo and clone it locally.  
 2. Create a feature branch.  
-3. Run `pytest` to confirm all tests pass.  
-4. Add or update tests for your changes.  
-5. Run `flake8` and `black` to format the code.  
-6. Update the changelog with your changes.  
-7. Submit a pull request – the CI pipeline must pass before merging.
+3. Run the test suite: `pytest`.  
+4. Add or update tests for any changes.  
+5. Format the code with `black` and lint with `flake8`.  
+6. Update the changelog before submitting a pull request.  
+7. The CI pipeline must pass before the PR is merged.
 
-## 📄 License
+---
+
+## License
 
 Apache 2.0 – see the [LICENSE](LICENSE) file.
