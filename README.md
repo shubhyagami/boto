@@ -5,13 +5,11 @@
 ![License](https://img.shields.io/pypi/l/boto.svg)
 ![CI Status](https://github.com/shubhyagami/boto/actions/workflows/python.yml/badge.svg)
 
-`boto` is the official Python interface to Amazon Web Services.  
-It offers an actively maintained, type‑annotated API that covers every
-AWS service as soon as it is released.
+`boto` is the official Python library for interacting with Amazon Web Services. It offers a type‑annotated, fully maintained API that gives you immediate access to every AWS service as soon as it becomes available.
 
 ---
 
-## Quick start
+## Getting started
 
 ```bash
 pip install boto
@@ -26,21 +24,24 @@ for bucket in s3.list_buckets()["Buckets"]:
     print(bucket["Name"])
 ```
 
-For multi‑account setups store profiles in `~/.aws/credentials` and
-create a session with `boto.Session(profile_name="dev")`.
+For multi‑account setups store profiles in `~/.aws/credentials` and create a session with
+
+```python
+session = boto.Session(profile_name="dev")
+```
 
 ---
 
 ## Core features
 
-| Feature | What it gives you |
-|---------|-------------------|
-| **Complete coverage** | Immediate access to every current AWS API. |
+| Feature | Description |
+|---------|-------------|
+| **Complete coverage** | Access to every current AWS API. |
 | **Dual abstraction** | Low‑level clients (`boto.client`) and high‑level resources (`boto.resource`). |
-| **Automatic retries & pagination** | Exponential back‑off and paginators are built in. |
-| **Flexible auth** | Environment vars, credentials files, IAM roles, instance profiles, etc. |
+| **Automatic retries & pagination** | Exponential back‑off and built‑in paginators. |
+| **Flexible authentication** | Environment variables, credentials files, IAM roles, instance profiles, etc. |
 | **Debug logging** | `boto.set_stream_logger("")` prints HTTP traffic. |
-| **Static typing** | Pydantic‑style annotations help IDEs and static analysers. |
+| **Type safety** | Pydantic‑style annotations help IDEs and static analysis. |
 
 ---
 
@@ -105,7 +106,7 @@ for page in paginator.paginate(Bucket="my-bucket"):
         print(obj["Key"])
 ```
 
-### Custom retry policy
+### Custom retry configuration
 
 ```python
 import botocore
@@ -124,7 +125,7 @@ boto.set_stream_logger("")
 
 ---
 
-## Changelog
+## Changelog (excerpt)
 
 * **1.0.3 (2026‑07‑10)** – Improved EC2 retry logic for throttling.  
 * **1.0.2 (2026‑07‑25)** – Optimized DynamoDB batch writes (~15 % latency reduction).  
@@ -136,16 +137,16 @@ boto.set_stream_logger("")
 
 ## Contributing
 
-1. Fork → clone.  
-2. Create a feature branch.  
-3. Run tests: `pytest`.  
-4. Add or update tests for any changes.  
-5. Format with `black`, lint with `flake8`.  
-6. Update the changelog before submitting a pull request.  
-7. Ensure the CI pipeline passes.
+1. Fork → clone  
+2. Create a feature branch  
+3. Run tests: `pytest`  
+4. Add or update tests for any changes  
+5. Format with `black`, lint with `flake8`  
+6. Update the changelog before submitting a pull request  
+7. Ensure the CI pipeline passes  
 
 ---
 
 ## License
 
-Apache 2.0 – see the [LICENSE](LICENSE) file.
+Apache 2.0 – see the [LICENSE](LICENSE) file.
