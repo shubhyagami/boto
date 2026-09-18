@@ -3,17 +3,22 @@
 ![PyPI version](https://img.shields.io/pypi/v/boto.svg)
 ![Supported Python](https://img.shields.io/pypi/pyversions/boto.svg)
 ![License](https://img.shields.io/pypi/l/boto.svg)
-![CI Status](https://github.com/shubhyagami/boto/actions/workflows/python.yml/badge.svg)
+![CI status](https://github.com/shubhyagami/boto/actions/workflows/python.yml/badge.svg)
+![Code style](https://img.shields.io/badge/code_style-black-000000.svg)
 
-`boto` is the official Python library for interacting with Amazon Web Services. It offers a type‑annotated, fully maintained API that gives you immediate access to every AWS service as soon as it becomes available.
+**boto** is the official Python library for interacting with Amazon Web Services. It is fully type‑annotated, actively maintained, and gives you immediate access to every AWS service as soon as it becomes available.
 
 ---
 
-## Getting started
+## Installation
 
-```bash
+```
 pip install boto
 ```
+
+---
+
+## Quick start
 
 ```python
 import boto
@@ -34,14 +39,12 @@ session = boto.Session(profile_name="dev")
 
 ## Core features
 
-| Feature | Description |
-|---------|-------------|
-| **Complete coverage** | Access to every current AWS API. |
-| **Dual abstraction** | Low‑level clients (`boto.client`) and high‑level resources (`boto.resource`). |
-| **Automatic retries & pagination** | Exponential back‑off and built‑in paginators. |
-| **Flexible authentication** | Environment variables, credentials files, IAM roles, instance profiles, etc. |
-| **Debug logging** | `boto.set_stream_logger("")` prints HTTP traffic. |
-| **Type safety** | Pydantic‑style annotations help IDEs and static analysis. |
+- **Complete coverage** – Access to every current AWS API.
+- **Dual abstraction** – Low‑level clients (`boto.client`) and high‑level resources (`boto.resource`).
+- **Automatic retries & pagination** – Exponential back‑off and built‑in paginators.
+- **Flexible authentication** – Environment variables, credentials files, IAM roles, instance profiles, etc.
+- **Debug logging** – `boto.set_stream_logger("")` prints HTTP traffic.
+- **Type safety** – Pydantic‑style annotations help IDEs and static analysis.
 
 ---
 
@@ -127,9 +130,9 @@ boto.set_stream_logger("")
 
 ## Changelog (excerpt)
 
-* **1.0.3 (2026‑07‑10)** – Improved EC2 retry logic for throttling.  
-* **1.0.2 (2026‑07‑25)** – Optimized DynamoDB batch writes (~15 % latency reduction).  
-* **1.0.1 (2026‑08‑06)** – Added S3 Express One Zone support, fixed SQS visibility‑timeout race, updated tests for Python 3.13.
+- **1.0.3 (2026‑07‑10)** – Improved EC2 retry logic for throttling.  
+- **1.0.2 (2026‑07‑25)** – Optimized DynamoDB batch writes (~15 % latency reduction).  
+- **1.0.1 (2026‑08‑06)** – Added S3 Express One Zone support, fixed SQS visibility‑timeout race, updated tests for Python 3.13.
 
 *(Full changelog is in [CHANGELOG.md](CHANGELOG.md))*  
 
@@ -139,7 +142,7 @@ boto.set_stream_logger("")
 
 1. Fork → clone  
 2. Create a feature branch  
-3. Run tests: `pytest`  
+3. Run `pytest`  
 4. Add or update tests for any changes  
 5. Format with `black`, lint with `flake8`  
 6. Update the changelog before submitting a pull request  
