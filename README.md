@@ -1,14 +1,18 @@
 # boto – Fully typed Python SDK for AWS
 
-![PyPI version](https://img.shields.io/pypi/v/boto.svg?label=pypi%20package)
-![Supported Python](https://img.shields.io/pypi/pyversions/boto.svg)
-![License](https://img.shields.io/pypi/l/boto.svg)
-![CI status](https://github.com/shubhyagami/boto/actions/workflows/python.yml/badge.svg)
+![PyPI version](https://img.shields.io/pypi/v/boto.svg?label=pypi%20package)  
+![Supported Python](https://img.shields.io/pypi/pyversions/boto.svg)  
+![License](https://img.shields.io/pypi/l/boto.svg)  
+![CI status](https://github.com/shubhyagami/boto/actions/workflows/python.yml/badge.svg)  
 ![Code style](https://img.shields.io/badge/code_style-black-000000.svg)
 
-`boto` is a type‑annotated Python client for Amazon Web Services.  
-It exposes every current AWS API through both low‑level clients (`boto.client`) and high‑level resources (`boto.resource`).  
-The library works on all supported Python 3.x versions (3.8–3.13) and is fully maintained.
+`boto` is a pure‑Python client for Amazon Web Services that ships with full type annotations.  
+All current AWS APIs are available via:
+
+* **Low‑level clients** – `boto.client(...)`
+* **High‑level resources** – `boto.resource(...)`
+
+It works on Python 3.8 – 3.13, has no C extensions, and is actively maintained.
 
 ---
 
@@ -20,18 +24,18 @@ pip install boto
 
 ---
 
-## Quick start
+## Getting started
 
 ```python
 import boto
 
-# List all S3 buckets
+# Create an S3 client and list buckets
 s3 = boto.client("s3")
 for bucket in s3.list_buckets()["Buckets"]:
     print(bucket["Name"])
 ```
 
-For multi‑account setups store profiles in `~/.aws/credentials` and start a session with:
+If you work with multiple AWS accounts, store the credentials in `~/.aws/credentials` and start a named session:
 
 ```python
 session = boto.Session(profile_name="dev")
@@ -41,13 +45,13 @@ session = boto.Session(profile_name="dev")
 
 ## Core features
 
-- **All APIs** – Immediate access to every AWS service.
-- **Dual abstraction** – Low‑level AWS clients and high‑level Pythonic resources.
-- **Automatic retries & built‑in pagination** – Exponential back‑off, safe defaults.
-- **Flexible authentication** – Environment variables, credentials files, IAM roles, instance profiles, etc.
+- **Complete API coverage** – All services exposed immediately.
+- **Dual abstraction** – Low‑level clients *and* high‑level Pythonic resources.
+- **Built‑in retry & pagination** – Exponential back‑off, automatic page iteration.
+- **Flexible authentication** – Environment variables, shared credentials, IAM roles, instance profiles, and more.
 - **Debug logging** – `boto.set_stream_logger("")` prints raw HTTP traffic.
-- **Type safety** – Pydantic‑style annotations for IDEs and static analysis.
-- **Zero runtime dependencies** – Pure Python, no C extensions.
+- **Type‑safe** – Pydantic‑style annotations for IDEs and static analysis.
+- **Zero runtime dependencies** – Pure Python, no compiled extensions.
 
 ---
 
@@ -69,9 +73,7 @@ instances = ec2.create_instances(
 instance = instances[0]
 instance.wait_until_running()
 print(f"Instance {instance.id} running at {instance.public_ip_address}")
-
 # … do work …
-
 instance.terminate()
 ```
 
@@ -133,9 +135,9 @@ boto.set_stream_logger("")  # logs to stdout
 
 ## Changelog (excerpt)
 
-- **1.0.3 (2026‑07‑10)** – Improved EC2 retry logic for throttling.
-- **1.0.2 (2026‑07‑25)** – Optimized DynamoDB batch writes (~15 % latency reduction).
-- **1.0.1 (2026‑08‑06)** – Added S3 Express One Zone support, fixed SQS visibility‑timeout race, updated tests for Python 3.13.
+- **1.0.3 (2026‑07‑10)** – Improved EC2 retry logic for throttling.  
+- **1.0.2 (2026‑07‑25)** – Optimized DynamoDB batch writes (~15 % latency reduction).  
+- **1.0.1 (2026‑08‑06)** – Added S3 Express One Zone support, fixed SQS visibility‑timeout race, updated tests for Python 3.13.  
 
 *(Full changelog is in [CHANGELOG.md](CHANGELOG.md))*  
 
@@ -143,13 +145,13 @@ boto.set_stream_logger("")  # logs to stdout
 
 ## Contributing
 
-1. Fork and clone the repository.  
+1. Fork the repository and clone it locally.  
 2. Create a feature branch.  
-3. Run tests: `pytest`.  
-4. Add or update tests for any changes.  
-5. Format code with `black`, lint with `flake8`.  
-6. Update the change log.  
-7. Submit a pull request – the CI pipeline will run automatically.
+3. Run the test suite: `pytest`.  
+4. Add or update tests for any code changes.  
+5. Format the code with `black` and lint with `flake8`.  
+6. Update the changelog.  
+7. Open a pull request – the CI pipeline will run automatically.
 
 ---
 
