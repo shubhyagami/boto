@@ -1,66 +1,34 @@
+[K[2m  [2mmodel deepseek-ai/deepseek-v4.1-flash failed, trying next...[0m[0m
 # boto – Fully typed Python SDK for AWS
 
-![PyPI version](https://img.shields.io/pypi/v/boto.svg?label=pypi%20package)
-![Supported Python](https://img.shields.io/pypi/pyversions/boto.svg)
-![License](https://img.shields.io/pypi/l/boto.svg)
-![CI status](https://github.com/shubhyagami/boto/actions/workflows/python.yml/badge.svg)
-![Code style](https://img.shields.io/badge/code_style-black-000000.svg)
+![PyPI version](https://img.shields.io/pypi/v/boto.svg?label=pypi%20package)  
+![Python versions](https://img.shields.io/pypi/pyversions/boto.svg)  
+![License](https://img.shields.io/pypi/l/boto.svg)  
+![CI](https://github.com/shubhyagami/boto/actions/workflows/python.yml/badge.svg)  
+![Code style: black](https://img.shields.io/badge/code_style-black-000000.svg)
 
-`boto` is a pure-Python client for Amazon Web Services with full type annotations. It exposes all current AWS APIs through low-level clients and high-level resources:
+`boto` is a pure‑Python AWS SDK that ships with full type annotations.  
+It exposes every current AWS API through:
 
-- **Low-level clients** – `boto.client(...)`
-- **High-level resources** – `boto.resource(...)`
+- **Low‑level clients** – `boto.client(...)`
+- **High‑level resources** – `boto.resource(...)`
 
-It works on Python 3.8–3.13, has no C extensions, and is actively maintained.
+It runs on Python 3.8–3.13, has no compiled extensions, and is actively maintained.
 
-## Installation
+## Quick start
 
 ```bash
 pip install boto
 ```
 
-## Requirements
-
-- Python 3.8 or newer
-- No compiled extensions
-
-## Getting started
-
 ```python
 import boto
 
-# Create an S3 client and list buckets
+# List S3 buckets with a low‑level client
 s3 = boto.client("s3")
-for bucket in s3.list_buckets()["Buckets"]:
-    print(bucket["Name"])
-```
+print([b["Name"] for b in s3.list_buckets()["Buckets"]])
 
-To use a named profile from `~/.aws/credentials`:
-
-```python
-import boto
-
-session = boto.Session(profile_name="dev")
-s3 = session.client("s3")
-```
-
-## Core features
-
-- **Complete API coverage** – All services are available through the SDK.
-- **Dual abstraction** – Use low-level clients or high-level Pythonic resources.
-- **Built-in retries and pagination** – Exponential backoff and automatic page iteration.
-- **Flexible authentication** – Environment variables, shared credentials, IAM roles, instance profiles, and more.
-- **Debug logging** – `boto.set_stream_logger("")` prints raw HTTP traffic.
-- **Type-safe** – Type annotations for IDEs and static analysis.
-- **Pure Python** – No compiled extensions.
-
-## Usage examples
-
-### EC2
-
-```python
-import boto
-
+# Create an EC2 instance with a resource
 ec2 = boto.resource("ec2")
 instances = ec2.create_instances(
     ImageId="ami-0abcdef1234567890",
@@ -72,44 +40,33 @@ instances = ec2.create_instances(
 instance = instances[0]
 instance.wait_until_running()
 print(f"Instance {instance.id} running at {instance.public_ip_address}")
-# … do work …
 instance.terminate()
 ```
 
-### S3
+To use a profile from `~/.aws/credentials`:
 
 ```python
-import boto
-
-s3 = boto.client("s3")
-s3.upload_file("myfile.txt", "my-bucket", "myfile.txt")
+session = boto.Session(profile_name="dev")
+s3 = session.client("s3")
 ```
 
-### DynamoDB
+## Core features
+
+- 100 % API coverage – all services are available.
+- Dual abstraction: low‑level clients and high‑level, Pythonic resources.
+- Built‑in retries, exponential backoff, and automatic pagination.
+- Flexible authentication (environment variables, shared credentials, IAM roles, instance profiles, etc.).
+- Optional debug logging: `boto.set_stream_logger("")`.
+- Full type safety for IDEs and static analysis.
+- Pure Python – no compiled extensions.
+
+## Advanced usage
+
+### Pagination
 
 ```python
-import boto
-
-dynamodb = boto.resource("dynamodb")
-table = dynamodb.create_table(
-    TableName="my-table",
-    KeySchema=[{"AttributeName": "id", "KeyType": "HASH"}],
-    AttributeDefinitions=[{"AttributeName": "id", "AttributeType": "S"}],
-    BillingMode="PAY_PER_REQUEST",
-)
-table.wait_until_exists()
-```
-
-## Advanced topics
-
-### Paginate a client call
-
-```python
-import boto
-
 s3 = boto.client("s3")
-paginator = s3.get_paginator("list_objects_v2")
-for page in paginator.paginate(Bucket="my-bucket"):
+for page in s3.get_paginator("list_objects_v2").paginate(Bucket="my-bucket"):
     for obj in page.get("Contents", []):
         print(obj["Key"])
 ```
@@ -117,49 +74,44 @@ for page in paginator.paginate(Bucket="my-bucket"):
 ### Custom retry configuration
 
 ```python
-import boto
 from botocore.config import Config
-
-config = Config(retries={"max_attempts": 10})
-client = boto.client("s3", config=config)
+client = boto.client("s3", config=Config(retries={"max_attempts": 10}))
 ```
 
-### Enable debug logging for HTTP traffic
+### Debug logging
 
 ```python
-import boto
-
-boto.set_stream_logger("")  # logs to stdout
+boto.set_stream_logger("")  # logs HTTP traffic to stdout
 ```
 
 ## Changelog
 
-### 1.0.3 (2026-08-06)
+See the full changelog in [CHANGELOG.md](CHANGELOG.md).
+
+### 1.0.3 (2026‑08‑06)
 
 - Added S3 Express One Zone support.
-- Fixed SQS visibility-timeout race.
-- Updated tests for Python 3.13.
+- Fixed SQS visibility‑timeout race.
+- Updated tests for Python 3.13.
 
-### 1.0.2 (2026-07-25)
+### 1.0.2 (2026‑07‑25)
 
-- Optimized DynamoDB batch writes (~15% latency reduction).
+- Optimized DynamoDB batch writes (~15 % latency reduction).
 
-### 1.0.1 (2026-07-10)
+### 1.0.1 (2026‑07‑10)
 
 - Improved EC2 retry logic for throttling.
 
-Full changelog is in [CHANGELOG.md](CHANGELOG.md).
-
 ## Contributing
 
-1. Fork the repository and clone it locally.
-2. Create a feature branch.
-3. Run the test suite: `pytest`.
-4. Add or update tests for any code changes.
-5. Format the code with `black` and lint with `flake8`.
-6. Update the changelog.
-7. Open a pull request. CI will run automatically.
+1. Fork and clone the repo.  
+2. Create a feature branch.  
+3. Run the test suite: `pytest`.  
+4. Add or update tests for any changes.  
+5. Format the code with `black` and lint with `flake8`.  
+6. Update the changelog.  
+7. Open a pull request – CI will run automatically.
 
 ## License
 
-Apache 2.0 – see the [LICENSE](LICENSE) file.
+Apache 2.0 – see the [LICENSE](LICENSE) file.
