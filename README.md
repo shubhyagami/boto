@@ -1,19 +1,14 @@
 [K[2m  [2mmodel deepseek-ai/deepseek-v4.1-flash failed, trying next...[0m[0m
 # boto – Fully typed Python SDK for AWS
 
-![PyPI version](https://img.shields.io/pypi/v/boto.svg?label=pypi%20package)  
-![Python versions](https://img.shields.io/pypi/pyversions/boto.svg)  
-![License](https://img.shields.io/pypi/l/boto.svg)  
-![CI](https://github.com/shubhyagami/boto/actions/workflows/python.yml/badge.svg)  
+![PyPI version](https://img.shields.io/pypi/v/boto.svg?label=pypi%20package)
+![Python versions](https://img.shields.io/pypi/pyversions/boto.svg)
+![License](https://img.shields.io/pypi/l/boto.svg)
+![CI](https://github.com/shubhyagami/boto/actions/workflows/python.yml/badge.svg)
 ![Code style: black](https://img.shields.io/badge/code_style-black-000000.svg)
 
-`boto` is a pure‑Python AWS SDK that ships with full type annotations.  
-It exposes every current AWS API through:
-
-- **Low‑level clients** – `boto.client(...)`
-- **High‑level resources** – `boto.resource(...)`
-
-It runs on Python 3.8–3.13, has no compiled extensions, and is actively maintained.
+`boto` is a 100 % typed, pure‑Python AWS SDK that provides complete coverage of the official AWS APIs.  
+It is built on top of `botocore`, adds type annotations, automatic retries, pagination, and a convenient Pythonic interface.
 
 ## Quick start
 
@@ -24,11 +19,11 @@ pip install boto
 ```python
 import boto
 
-# List S3 buckets with a low‑level client
+# Low‑level client: list S3 buckets
 s3 = boto.client("s3")
 print([b["Name"] for b in s3.list_buckets()["Buckets"]])
 
-# Create an EC2 instance with a resource
+# High‑level resource: create an EC2 instance
 ec2 = boto.resource("ec2")
 instances = ec2.create_instances(
     ImageId="ami-0abcdef1234567890",
@@ -43,7 +38,7 @@ print(f"Instance {instance.id} running at {instance.public_ip_address}")
 instance.terminate()
 ```
 
-To use a profile from `~/.aws/credentials`:
+To use a shared credentials profile:
 
 ```python
 session = boto.Session(profile_name="dev")
@@ -52,12 +47,14 @@ s3 = session.client("s3")
 
 ## Core features
 
-- 100 % API coverage – all services are available.
-- Dual abstraction: low‑level clients and high‑level, Pythonic resources.
-- Built‑in retries, exponential backoff, and automatic pagination.
-- Flexible authentication (environment variables, shared credentials, IAM roles, instance profiles, etc.).
-- Optional debug logging: `boto.set_stream_logger("")`.
-- Full type safety for IDEs and static analysis.
+- Full AWS API coverage – every service is available.  
+- Dual abstraction:  
+  * **Low‑level** clients (`boto.client(...)`) – direct mapping of the AWS API.  
+  * **High‑level** resources (`boto.resource(...)`) – Pythonic, idiomatic usage.  
+- Built‑in retries with exponential backoff and automatic pagination.  
+- Flexible authentication: environment variables, shared credentials, IAM roles, instance profiles, etc.  
+- Optional debug logging: `boto.set_stream_logger("")`.  
+- 100 % type safety for IDEs and static analysis.  
 - Pure Python – no compiled extensions.
 
 ## Advanced usage
@@ -86,12 +83,12 @@ boto.set_stream_logger("")  # logs HTTP traffic to stdout
 
 ## Changelog
 
-See the full changelog in [CHANGELOG.md](CHANGELOG.md).
+A full changelog is available [here](CHANGELOG.md).
 
 ### 1.0.3 (2026‑08‑06)
 
-- Added S3 Express One Zone support.
-- Fixed SQS visibility‑timeout race.
+- Added support for S3 Express One‑Zone.  
+- Fixed a race condition in SQS visibility‑timeout handling.  
 - Updated tests for Python 3.13.
 
 ### 1.0.2 (2026‑07‑25)
@@ -104,13 +101,13 @@ See the full changelog in [CHANGELOG.md](CHANGELOG.md).
 
 ## Contributing
 
-1. Fork and clone the repo.  
+1. Fork and clone the repository.  
 2. Create a feature branch.  
 3. Run the test suite: `pytest`.  
 4. Add or update tests for any changes.  
 5. Format the code with `black` and lint with `flake8`.  
 6. Update the changelog.  
-7. Open a pull request – CI will run automatically.
+7. Open a pull request – the CI will run automatically.
 
 ## License
 
